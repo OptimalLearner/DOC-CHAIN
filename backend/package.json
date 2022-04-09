@@ -5,6 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "create": "node src/create.js",
+    "query": "node src/query.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
