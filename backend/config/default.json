@@ -6,5 +6,11 @@
         "host": "localhost",
         "port": "27017",
         "name": "doc-chain"
+    },
+    "ipfs": {
+        "protocol": "http",
+        "host": "localhost",
+        "port": "8082",
+        "name": "ipfs"
     }
 }

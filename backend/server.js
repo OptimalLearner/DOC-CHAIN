@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const config = require('config');
 const cors = require('cors');
+const functions = require('./utils')
 
 const studentRoutes = require('./routes/students.routes')
 
@@ -22,6 +23,14 @@ app.get('/', (req, res) => {
 });
 
 app.use('', studentRoutes);
+
+// Testing IPFS
+// app.post('/abcd', async (req,res) => {
+//     hash = await functions.addOneFileToIPFS('C:/Users/Keval/Downloads/institute_login_img.svg');
+//     console.log(hash)
+//     f = functions.getFileFromIPFS(hash);
+//     res.end(f)
+// })
 
 
 let PORT = config.get('app.port');
