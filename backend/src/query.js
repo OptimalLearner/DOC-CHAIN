@@ -94,7 +94,7 @@ async function searchAsset(value){
 //searchAsset('102').then(x=>console.log(x))
 
 
-async function updateAsset(id,new_value) {
+async function updateAsset(id, new_value) {
 	const wallet =  await Wallets.newFileSystemWallet(walletPath);
     const gateway = new Gateway();
 
@@ -105,21 +105,18 @@ async function updateAsset(id,new_value) {
     const contract = network.getContract('smart-contracts');
 
 
-    getTransactionData(id).then( x=>{
+    getTransactionData(id).then( res =>{
         console.log(id)
-        console.log(x.aadhar)
-        console.log(typeof(x.pan))
-        console.log(new_value)
-        // submitTransaction(id,x.aadhar,x.pan,"rd1","rd2","rd3","rd4",new_value)
-
-        // Submit the specified transaction.updateMyAsset
-        //contract.evaluateTransaction('updateDocAsset', id,x.aadhar,x.pan,new_value);
+        console.log(res)
+        contract.submitTransaction('updateDocAsset', id, res.name, res.institute, res.degree, new_value);
         console.log("hey")
         //console.log('Transaction has been submitted');
     })
     // Disconnect from the gateway.
     gateway.disconnect();
 }
+
+//updateAsset('2020301075', 'hey')
 
 async function searchParticularAsset() {
     const wallet = await Wallets.newFileSystemWallet(walletPath);
