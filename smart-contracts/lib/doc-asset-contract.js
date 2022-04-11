@@ -37,12 +37,17 @@ class DocAssetContract extends Contract {
         return asset;
     }
 
-    async updateDocAsset(ctx, docAssetId, newValue) {
+    async updateDocAsset(ctx, docAssetId, name, institute, degree, new_hash) {
         const exists = await this.docAssetExists(ctx, docAssetId);
         if (!exists) {
             throw new Error(`The doc asset ${docAssetId} does not exist`);
         }
-        const asset = { value: newValue };
+        const asset = { 
+            name: name,
+            institute: institute,
+            degree: degree,
+            degree_certificate: new_hash
+         };
         const buffer = Buffer.from(JSON.stringify(asset));
         await ctx.stub.putState(docAssetId, buffer);
     }

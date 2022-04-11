@@ -1,6 +1,6 @@
 {
   "name": "smart-contracts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Smart Contract For Document Verification implemented in JavaScript.",
   "main": "index.js",
   "engines": {
