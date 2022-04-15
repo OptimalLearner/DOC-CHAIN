@@ -1,11 +1,15 @@
 const User = require('../models/users')
+
+
+
 exports.loginUser = async (req, res) => {
     console.log(req.body)
     try {
-        const data = await User.findOne({ email: req.body.email });
+        const data = await User.findOne({ code: req.body.code });
         if (data) {
             if (data.password === req.body.password) {
-                res.json(data);
+                context={"message":"Login Success!!"};
+                res.json(context);
             } else {
                 context = {"message": "Incorrect Password"};
                 res.json(context);
@@ -24,6 +28,15 @@ exports.loginUser = async (req, res) => {
 
 exports.registerUser = async (req, res) => {
     try {
+        
+        const data = await User.findOne({ code: req.body.code });
+        if(data)
+        {
+         
+            context = {"message": "Duplicate Code"};
+            res.json(context);
+            
+        }
         const user = {
             
             name:req.body.name,

@@ -1,100 +1,83 @@
 import React from "react";
-import Header from "../Header/Header";
 import { useState } from "react";
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-   
+import Header from "../Header/Header";
+import "./asignin.css";
+import axios from 'axios'
   const ASignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const handleChangepassword = (e) => {
-    setPassword(e.target.value);
-  };
-  const handleSubmit = (e) => {
-      e.preventDefault()
-    console.log("..submitting the file");
-  };
-  var data = {};
-  var tempdata = {
-    "email": email,
-    "pass:": password,
-  };
-
-  data = tempdata;
-  console.log(data);
-  
-  const options = [
-    'one', 'two', 'three'
-    ];
-    const defaultOption = options[0];
-  return (
-   
+    const initialState = {
+      code: "",
+      password: ""
+    }
+    const [user, setUser] = useState(initialState);
+    const [code, setCode] = useState();
+    const [password, setPass] = useState();
+    const login = async (formData) => {
+      console.log(formData)
+      await axios
+        .post("http://localhost:4000/users/login", formData)
+        .then(function (response) {
+          var d = response.data;
+          setCode(d.code);
+          setPass(d.password) 
+          console.log(d);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
     
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      e.target.reset();
+      let formData = user;
+      setUser(initialState);
+      login(formData);
+    }
+    
+    const handleChange = (e) => {
+      console.log(user)
+      setUser({ ...user, [e.target.name]: e.target.value });
+    };
+  
+  return ( 
     <>
-      <Header />
-      
-      <section className="vh-100 gradient-custom">
-        <div className="container py-5 h-100">
-          <div className="row justify-content-center align-items-center h-100">
-            <div className="col-12 col-lg-9 col-xl-7">
-              <div
-                className="card shadow-2-strong card-registration"
-                style={{ borderRadius: "15px" }}
-              >
-                <div className="card-body p-4 p-md-5">
-                  <h3 className="mb-4 pb-2 pb-md-0 mb-md-5">Student Login</h3>
-                  <form onSubmit={handleSubmit}>
-                    <label className="form-label" for="emailAddress">
-                      Select Institute
-                    </label>
-                    <div className="row">
-                      <div className="col-md-12 mb-4 pb-2">
-                      <div className="form-outline">
-                      
-                     
-                        
-                        <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />;
-                      
-                       </div>
-                      </div>
-                        <div className="col-md-12 mb-4 pb-2">
-                          <div className="form-outline">
-                            <label className="form-label" for="password">
-                              Password
-                            </label>
+    <Header/>
+      <div class="parent clearfix">
+    <div class="bg-illustration">
+      <img src="https://i.ibb.co/Pcg0Pk1/logo.png" alt="logo"/>
 
-                            <input
-                              type="password"
-                              id="password"
-                              className="form-control form-control-lg"
-                              onChange={() =>handleChangepassword()}
-                            />
-                          </div>
-                        </div>
-                      </div>
+      <div class="burger-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
-                    <div className="text-center fs-12">
-                      {" "}
-                      Don't Have an Account?{" "}
-                      <a href="/signup">Sign up</a>{" "}
-                    </div>
-                    <div className="mt-4 pt-2" align="center">
-                      <input
-                        className="btn btn-primary btn-lg"
-                        type="submit"
-                        value="Login"
-                      />
-                    </div>
-                  </form>
-                </div>
-              </div>
+    </div>
+    
+    <div class="login">
+      <div class="container">
+        <h1>   Institute Login </h1>
+    
+        <div class="login-form">
+          <form action="" onSubmit={handleSubmit}>
+            <input type="text" name="code" onChange={handleChange} placeholder="Institute Code"/>
+            <input type="password" name="password" onChange={handleChange} placeholder="Password"/>
+
+           
+            <div class="forget-pass">
+              <a href="#">Forgot Password ?</a>
             </div>
-          </div>
+
+            <button type="submit">LOG-IN</button>
+
+          </form>
         </div>
-      </section>
+    
+      </div>
+      </div>
+  </div> 
+    
     </>
   );
 };

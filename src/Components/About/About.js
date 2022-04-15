@@ -7,9 +7,9 @@ const About = () => {
 
                 <div className="section-header">
                     <h2>About Us</h2>
-                    <p>We provide a complete blockchain powered document verification system that helps in storing and verifying all types of academic documents.
+                    <h4>We provide a complete blockchain powered document verification system that helps in storing and verifying all types of academic documents.
  
- Every single verification will be looked upon the backend decentralized ledger in realtime.</p>
+ Every single verification will be looked upon the backend decentralized ledger in realtime.</h4>
                 </div>
 
                       </div>

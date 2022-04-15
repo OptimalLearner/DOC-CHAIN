@@ -27,7 +27,7 @@ const SignUp = () => {
          setName(d.name);
          setEmail(d.email);
          setPass(d.password)
-         setCode(d.code) //user logged in and user's email saved in email
+         setCode(d.code) 
          console.log(d);
        })
        .catch(function (error) {
@@ -136,16 +136,16 @@ const SignUp = () => {
                       </div>
                       </div>
 
-                     <div className="text-center fs-6">
+                     <div className="text-center fs-10">
                       {" "}
-                      <a href="/signin">Already Have an Account</a> ?{" "}
+                      <a href="/signin">Already Have an Account</a> ?{"  "}
                       <a href="/signin">Login</a>{" "}
                     </div>
                     <div className="mt-4 pt-2">
                       <input
                         className="btn btn-primary btn-lg"
                         type="submit"
-                        value="Submit"
+                        value="SIGN UP"
                         align="center"
                       />
                     </div>
