@@ -24,7 +24,6 @@ mongoose.connection.once('open',function(){
 })
 
 app.get('/', (req, res) => {
-    req.session.user = '2020301075';
     res.end('Doc-Chain Online!');
 });
 
