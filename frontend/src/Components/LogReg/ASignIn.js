@@ -14,7 +14,7 @@ import axios from 'axios'
     const login = async (formData) => {
       console.log(formData)
       await axios
-        .post(`${process.env.REACT_APP_BACKEND_DOMAIN}users/login`, formData)
+        .post(`${process.env.REACT_APP_BACKEND_DOMAIN}loginInstitute`, formData)
         .then(function (response) {
           var d = response.data;
           setCode(d.code);

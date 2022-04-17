@@ -21,7 +21,7 @@ const SignUp = () => {
    const register = async (formData) => {
      console.log(formData)
      await axios
-       .post(`${process.env.REACT_APP_BACKEND_DOMAIN}users/register`, formData)
+       .post(`${process.env.REACT_APP_BACKEND_DOMAIN}registerInstitute`, formData)
        .then(function (response) {
          var d = response.data;
          setName(d.name);
@@ -138,8 +138,8 @@ const SignUp = () => {
 
                      <div className="text-center fs-10">
                       {" "}
-                      <a href="/signin">Already Have an Account</a> ?{"  "}
-                      <a href="/signin">Login</a>{" "}
+                      <a href="/ASignIn">Already Have an Account</a> ?{"  "}
+                      <a href="/ASignIn">Login</a>{" "}
                     </div>
                     <div className="mt-4 pt-2">
                       <input

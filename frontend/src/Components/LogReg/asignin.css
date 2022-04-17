@@ -48,7 +48,6 @@
   *:focus {
     outline: none;
   }
-  
   .clearfix::after {
     content: "";
     display: table;
@@ -57,8 +56,9 @@
   
   .bg-illustration {
     position: relative;
-    height: 100vh;
-    width: 1194px;
+    height: 40rem;
+    width: 20rem;
+    margin-top: 10rem;
     background: url("../../../public/assets/img/dochain.png") no-repeat center center scroll;
     background-size: cover;
     float: left;

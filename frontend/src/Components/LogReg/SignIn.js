@@ -13,7 +13,7 @@ const SignIn = () => {
   const login = async (formData) => {
     console.log(formData)
     await axios
-      .post(`${process.env.REACT_APP_BACKEND_DOMAIN}students/logStud`, formData)
+      .post(`${process.env.REACT_APP_BACKEND_DOMAIN}/loginStudent`, formData)
       .then(function (response) {
         var d = response.data;
         setUid(d.uid);
@@ -90,11 +90,7 @@ const SignIn = () => {
                       </div>
                     
 
-                    <div className="text-center fs-12">
-                      {" "}
-                      Don't Have an Account?{" "}
-                      <a href="/signup">Sign up</a>{" "}
-                    </div>
+                    
                     <div className="mt-4 pt-2" align="center">
                       <input
                         className="btn btn-primary btn-lg"
