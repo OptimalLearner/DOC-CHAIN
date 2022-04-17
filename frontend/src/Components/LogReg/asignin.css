@@ -59,7 +59,7 @@
     height: 40rem;
     width: 20rem;
     margin-top: 10rem;
-    background: url("../../../public/assets/img/dochain.png") no-repeat center center scroll;
+    background: url("../../dochain.png") no-repeat center center scroll;
     background-size: cover;
     float: left;
     -webkit-animation: bgslide 2.3s forwards;
