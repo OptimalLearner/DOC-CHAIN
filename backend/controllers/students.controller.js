@@ -3,6 +3,20 @@ const { updateAsset, getTransactionData } = require('../src/create');
 const functions  = require('../utils');
 const formidable = require("formidable");
 
+const loginStud = async (req, res) => {
+    try {
+        let result = await StudentService.loginStud(req.body.uid, req.body.password)
+        if(result == 'Success') {
+            return res.end('Login Success');
+        } else {
+            return res.end('Login Failed');
+        }
+    } catch(e) {
+        console.log(e);
+        return res.end('Error while login');
+    }
+}
+
 const getStudent = async (req, res) => {
     try {
         let students = await StudentService.getStudent({})
@@ -51,4 +65,4 @@ const viewCertificate = async (req, res) => {
     }
 }
 
-module.exports = { getStudent, uploadCertificate, viewCertificate }
+module.exports = { loginStud, getStudent, uploadCertificate, viewCertificate }

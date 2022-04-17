@@ -20,7 +20,22 @@ let studentSchema = new Schema({
     institute_code: {
         type: String
     },
-    degree: {
+    department: {
+        type: String
+    },
+    class: {
+        type: String
+    },
+    address: {
+        type: String
+    },
+    city: {
+        type: String
+    },
+    postal_code: {
+        type: String
+    },
+    phone_no: {
         type: String
     },
     password: {

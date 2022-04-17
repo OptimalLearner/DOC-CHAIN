@@ -10,4 +10,18 @@ const getStudent = async (query) => {
     }
 }
 
-module.exports = { getStudent }
+const loginStud = async (uid, password) => {
+    const data = await Student.findOne({ uid: uid });
+    if (data) {
+        if (data.password == password) {
+            return 'Success';
+            
+        } else {
+            return 'Fail';
+        }
+    } else {
+        return 'Error';
+    }
+}
+
+module.exports = { getStudent, loginStud }
