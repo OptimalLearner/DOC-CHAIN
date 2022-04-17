@@ -11,9 +11,6 @@ let studentSchema = new Schema({
     email: {
         type: String
     },
-    rollno: {
-        type: Number
-    },
     institute: {
         type: String
     },
@@ -35,14 +32,14 @@ let studentSchema = new Schema({
     postal_code: {
         type: String
     },
-    phone_no: {
+    country: {
         type: String
     },
     password: {
         type: String
     }
 }, {
-    collection: 'studs'
+    collection: 'students2'
 })
 
 module.exports = mongoose.model('Students', studentSchema)

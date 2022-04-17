@@ -20,6 +20,9 @@ import axios from 'axios'
           setCode(d.code);
           setPass(d.password) 
           console.log(d);
+          if(d == 'Login Success') {
+            window.location.href = "http://localhost:3001/"
+          }
         })
         .catch(function (error) {
           console.log(error);

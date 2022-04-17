@@ -65,4 +65,14 @@ const viewCertificate = async (req, res) => {
     }
 }
 
-module.exports = { loginStud, getStudent, uploadCertificate, viewCertificate }
+const addStudent = async (req, res) => {
+    try {
+        console.log(req.body)
+        let result = await StudentService.addStudent(req.body)
+        return res.end('yes')
+    } catch(e) {
+        throw Error('Unable To Add Student');
+    }
+}
+
+module.exports = { loginStud, getStudent, uploadCertificate, viewCertificate, addStudent }

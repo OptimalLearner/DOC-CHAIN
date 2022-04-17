@@ -24,4 +24,15 @@ const loginStud = async (uid, password) => {
     }
 }
 
-module.exports = { getStudent, loginStud }
+const addStudent = async (record) => {
+    console.log('record', record);
+    const data = await Student.findOne({ uid: record.uid });
+        if(data) {
+            return 'Institute Already Exists';        
+        }
+        const newRecord = new Student(record);
+        await newRecord.save();
+        return 'Success';
+}
+
+module.exports = { getStudent, loginStud, addStudent }
