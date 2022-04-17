@@ -4,19 +4,19 @@ import { useState } from "react";
 import axios from 'axios'
 const SignIn = () => { 
  const initialState = {
-    email: "",
+    uid: "",
     password: ""
   }
   const [user, setUser] = useState(initialState);
-  const [email, setEmail] = useState();
+  const [uid, setUid] = useState();
   const [password, setPass] = useState();
   const login = async (formData) => {
     console.log(formData)
     await axios
-      .post("http://localhost:4000/users/login", formData)
+      .post("http://localhost:4000/students/logStud", formData)
       .then(function (response) {
         var d = response.data;
-        setEmail(d.email);
+        setUid(d.uid);
         setPass(d.password) //user logged in and user's email saved in email
         console.log(d);
       })
@@ -55,17 +55,17 @@ const SignIn = () => {
                 <div className="card-body p-4 p-md-5">
                   <h3 className="mb-4 pb-2 pb-md-0 mb-md-5">Student Login</h3>
                   <form onSubmit={handleSubmit} >
-                    <label className="form-label" for="emailAddress" >
-                      Email Id:
+                    <label className="form-label" for="UID" >
+                      UID:
                     </label>
                     <div className="row">
                       <div className="col-md-12 mb-4 pb-2">
                         <div className="form-outline">
                           <input
-                            type="email"
-                            id="emailAddress"
+                            type="text"
+                            id="uid"
                             className="form-control form-control-lg"
-                            name="email"
+                            name="uid"
                             onChange={handleChange}
                           />
                           <br/>

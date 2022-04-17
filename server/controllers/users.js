@@ -6,7 +6,11 @@ exports.loginUser = async (req, res) => {
     console.log(req.body)
     try {
         const data = await User.findOne({ code: req.body.code });
+        console.log(req.body.code);
+        console.log(data.code);
         if (data) {
+            console.log(data.password);
+            console.log(req.body.password);
             if (data.password === req.body.password) {
                 context={"message":"Login Success!!"};
                 res.json(context);

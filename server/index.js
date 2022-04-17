@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 
 app.use('/users', require('./routes/users'))
+app.use('/students', require('./routes/students'))
 
 
 
