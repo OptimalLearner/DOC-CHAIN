@@ -1,5 +1,5 @@
 const StudentService = require('../services/students.services');
-const { updateAsset, getTransactionData } = require('../src/create');
+const { updateAsset, getTransactionData, submitTransaction } = require('../src/create');
 const functions  = require('../utils');
 const formidable = require("formidable");
 
@@ -19,7 +19,8 @@ const loginStud = async (req, res) => {
 
 const getStudent = async (req, res) => {
     try {
-        let students = await StudentService.getStudent({})
+        let students = await StudentService.getStudent({inst_code: req.params.code})
+        console.log(students)
         return res.status(200).json(students);
     } catch(e) {
         throw Error('Error While Fetching Student\'s Data');
@@ -61,7 +62,7 @@ const viewCertificate = async (req, res) => {
             return res.end(url);
         }
     } catch(e) {
-        throw Error('Unable To Fetch Certificate');
+        return res.end('Unable To Fetch Certificate');
     }
 }
 
@@ -69,9 +70,11 @@ const addStudent = async (req, res) => {
     try {
         console.log(req.body)
         let result = await StudentService.addStudent(req.body)
+        await submitTransaction(req.body.uid, req.body.name, req.body.institute, 'B.Tech', '');
+        console.log('transaction created');
         return res.end('yes')
     } catch(e) {
-        throw Error('Unable To Add Student');
+        return res.end('Unable To Add Student');
     }
 }
 

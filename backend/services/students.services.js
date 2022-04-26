@@ -3,6 +3,7 @@ let Student = require('../models/students.model');
 
 const getStudent = async (query) => {
     try {
+        console.log('query: ', query)
         let students = await Student.find(query);
         return students;
     } catch(e) {

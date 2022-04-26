@@ -3,7 +3,7 @@ const router = express.Router();
 
 let StudentController = require('../controllers/students.controller');
 
-router.get('/getStudentDetails', StudentController.getStudent);
+router.get('/getStudentDetails/:code', StudentController.getStudent);
 router.post('/uploadCertificate/:slug', StudentController.uploadCertificate);
 router.post('/viewCertificate/:slug', StudentController.viewCertificate);
 router.post('/loginStudent', StudentController.loginStud);

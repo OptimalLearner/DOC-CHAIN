@@ -34,4 +34,15 @@ const registerInstitute = async (name, email, code, password) => {
     }
 }
 
-module.exports = { loginInstitute, registerInstitute }
+const getInstitute = async (code) => {
+    try {
+        const data = await Institute.findOne({ code: code });
+        if(data) {
+            return data;       
+        }
+    } catch(e) {
+        return 'Error';
+    }
+}
+
+module.exports = { loginInstitute, registerInstitute, getInstitute }

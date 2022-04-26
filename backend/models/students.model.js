@@ -14,13 +14,13 @@ let studentSchema = new Schema({
     institute: {
         type: String
     },
-    institute_code: {
-        type: String
-    },
-    department: {
+    inst_code: {
         type: String
     },
     class: {
+        type: String
+    },
+    department: {
         type: String
     },
     address: {
