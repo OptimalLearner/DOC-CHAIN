@@ -29,6 +29,11 @@ const SignUp = () => {
          setPass(d.password)
          setCode(d.code) 
          console.log(d);
+         if(d=='Sign Up Success') {
+           window.location.href='http://localhost:3000/ASignIn'
+         } else {
+           alert(d);
+         }
        })
        .catch(function (error) {
          console.log(error);

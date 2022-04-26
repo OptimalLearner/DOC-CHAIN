@@ -22,6 +22,8 @@ import axios from 'axios'
           console.log(d);
           if(d == 'Login Success') {
             window.location.href = "http://localhost:3001/"
+          } else {
+            alert('Login Failed!')
           }
         })
         .catch(function (error) {
