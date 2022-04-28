@@ -39,4 +39,9 @@ let getFileFromIPFS = (hash) => {
     return url + decryptedFile;
 }
 
-module.exports = { encrypt, decrypt, addOneFileToIPFS, getFileFromIPFS }
+let onlyHashAdd = async (file) => {
+    x = await ipfs.add(file.data, {onlyHash: true});
+    return x[0].hash;
+}
+
+module.exports = { encrypt, decrypt, addOneFileToIPFS, getFileFromIPFS, onlyHashAdd }

@@ -1,5 +1,11 @@
 let Company = require('../models/company.model');
 const CompanyService = require('../services/company.services');
+
+const pdfParse = require("pdf-parse");
+const formidable = require("formidable");
+const { searchAsset, getTransactionData } = require('../src/create');
+const { decrypt, onlyHashAdd } = require('../utils');
+
 let s;
 const loginCompany = async (req, res) => {
     try {
@@ -38,7 +44,45 @@ const registerCompany = async (req, res) => {
 
 const verifyCandidate = async (req, res) => {
     try {
-        // xD
+        if (!req.files && !req.files.document) {
+            res.status(400);
+            res.end();
+        }
+    
+        await pdfParse(req.files.document).then(
+            response => {
+                return response.text
+            }
+        )
+        .then(extractedText => {
+            let number = "Number:";
+            let clgname="HSE-1HSS-12O21020";
+            let sentence = extractedText;
+            text=(sentence.split(number)[1].split(" ")[1].split("Programme")[0]);
+            text2=(sentence.split(clgname)[1].split(/\n/)[1].split("Grade")[0]);
+            
+        });
+
+        text = text.trim();
+        let doesExists = await searchAsset(text);
+        if(doesExists) {
+            record = await getTransactionData(text);
+            encryptedHash = record.degree_certificate;
+            decryptedHash = decrypt(encryptedHash);
+            console.log(decryptedHash);
+            console.log(req.files.document.data);
+
+            recentHash = await onlyHashAdd(req.files.document);
+            console.log(recentHash);
+
+            if(recentHash == decryptedHash) {
+                return res.end('Verified');
+            } else {
+                return res.end('Not Verified');
+            }
+        } else {
+            return res.end('Record Does Not Exists');
+        }
     } catch(e) {
         console.log(e);
         return res.end('Error while verification');
