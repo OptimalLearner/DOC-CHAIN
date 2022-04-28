@@ -8,6 +8,7 @@ require('dotenv').config()
 
 const studentRoutes = require('./routes/students.routes');
 const instituteRoutes = require('./routes/institute.routes');
+const companyRoutes = require('./routes/company.routes');
 
 const app = express();
 app.use(bodyParser.json());
@@ -31,14 +32,7 @@ app.get('/', (req, res) => {
 
 app.use('', studentRoutes);
 app.use('', instituteRoutes);
-
-//Testing IPFS
-// app.post('/abcd', async (req,res) => {
-//     hash = await functions.addOneFileToIPFS('C:/Users/Keval/Downloads/Marksheet 1.pdf');
-//     console.log(hash)
-//     f = functions.getFileFromIPFS(hash);
-//     res.end(f)
-// })
+app.use('', companyRoutes);
 
 
 let PORT = config.get('app.port');
