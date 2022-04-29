@@ -29,24 +29,34 @@ const getStudent = async (req, res) => {
 
 const uploadCertificate = async (req, res) => {
     try {
+        console.log('uploadCertificate')
         let uid = req.params.slug;
+        console.log(uid)
         if(uid) {
-            const form = new formidable.IncomingForm();
-            form.parse(req, async (err, fields, files) => {
-                if (err) {
-                    console.log("Error parsing the files");
-                    return res.status(400).json({
-                        status: "Fail",
-                        message: "There was an error parsing the files",
-                        error: err,
-                    });
-                } else {
-                    hash = await functions.addOneFileToIPFS(files.image.filepath);
-                    await updateAsset(uid, hash);
-                    console.log('updated!!!')
-                    return res.status(200).end('updated')
-                }
-            });
+            console.log('Inside');
+            if(req.files.image) {
+                hash = await functions.addOneFileToIPFS(req.files.image);
+                await updateAsset(uid, hash);
+                console.log('updated!!!')
+                return res.status(200).end('updated');
+            }
+            // const form = new formidable.IncomingForm();
+            // form.parse(req, async (err, fields, files) => {
+            //     console.log('form parse')
+            //     if (err) {
+            //         console.log("Error parsing the files");
+            //         return res.status(400).json({
+            //             status: "Fail",
+            //             message: "There was an error parsing the files",
+            //             error: err,
+            //         });
+            //     } else {
+            //         hash = await functions.addOneFileToIPFS(files.image.filepath);
+            //         await updateAsset(uid, hash);
+            //         console.log('updated!!!')
+            //         return res.status(200).end('updated')
+            //     }
+            // });
         }
     } catch(e) {
         throw Error('Unable To Upload Certificate');

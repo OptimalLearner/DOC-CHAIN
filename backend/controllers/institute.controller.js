@@ -43,10 +43,10 @@ const initialDashboard = async (req, res) => {
         name: s.institute,
         code: s.code
     }
-    let fe = await Student.find({ class: 'FE' });
-    let se = await Student.find({ class: 'SE' });
-    let te = await Student.find({ class: 'TE' });
-    let be = await Student.find({ class: 'BE' });
+    let fe = await Student.find({ class: 'FE', inst_code: s.code });
+    let se = await Student.find({ class: 'SE', inst_code: s.code });
+    let te = await Student.find({ class: 'TE', inst_code: s.code });
+    let be = await Student.find({ class: 'BE', inst_code: s.code });
     console.log(data, te.length)
     return res.json({data: data, fe: fe.length, se: se.length, te: te.length, be: be.length});
 }

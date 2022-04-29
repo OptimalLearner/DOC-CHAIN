@@ -66,7 +66,7 @@ import axios from 'axios'
     
         <div className="login-form">
           <form action="" onSubmit={handleSubmit}>
-            <input type="text" name="code" onChange={handleChange} placeholder="Institute Code"/>
+            <input type="text" name="code" onChange={handleChange} placeholder="Company Code"/>
             <input type="password" name="password" onChange={handleChange} placeholder="Password"/>
 
            

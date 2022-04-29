@@ -25,10 +25,17 @@ let decrypt = (text) => {
 }
 
 let addOneFileToIPFS = async (file) => {
-    let content = fs.readFileSync(file);
-    let buff = Buffer.from(content);
+    console.log(Buffer.isBuffer(file.data))
+    let buff;
+    if(!Buffer.isBuffer(file.data)) {
+        let content = fs.readFileSync(file);
+        buff = Buffer.from(content);
+    } else {
+        buff = file.data;
+    }
     let addedFile = await ipfs.add(buff);
     let encryptedHash = encrypt(addedFile[0].hash);
+    console.log(encryptedHash)
     return encryptedHash;
 }
 

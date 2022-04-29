@@ -69,11 +69,11 @@ const verifyDocument = async (req, res) => {
             record = await getTransactionData(text);
             encryptedHash = record.degree_certificate;
             decryptedHash = decrypt(encryptedHash);
-            console.log(decryptedHash);
+            console.log('Decrypted hash (from blockchain): ' + decryptedHash);
             console.log(req.files.document.data);
 
             recentHash = await onlyHashAdd(req.files.document);
-            console.log(recentHash);
+            console.log('Hash of document uploaded by company: ' + recentHash);
 
             if(recentHash == decryptedHash) {
                 return res.end('Verified');
