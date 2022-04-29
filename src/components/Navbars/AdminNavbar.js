@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
 
 import routes from "routes.js";
+import axios from "axios";
 
 function Header() {
   const location = useLocation();
@@ -26,6 +27,18 @@ function Header() {
     }
     return "Brand";
   };
+
+  const logoutFunc = () => {
+    axios.post('http://localhost:5000/logout')
+    .then(res => {
+      if(res.data == 'Logout') {
+        window.location.href = "http://localhost:3000";
+      } else {
+        alert('Error While Logging Out');
+      }
+    })
+  }
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -86,8 +99,7 @@ function Header() {
             <Nav.Item>
               <Nav.Link
                 className="m-0"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
+                onClick={logoutFunc}
               >
                 <span className="no-icon">Log out</span>
               </Nav.Link>
