@@ -41,13 +41,13 @@ function Admin() {
   const [hasImage, setHasImage] = React.useState(true);
   const location = useLocation();
   const mainPanel = React.useRef(null);
-  const getRoutes = (routes, code) => {
+  const getRoutes = (routes, name, code) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/institute") {
         return (
           <Route
             path={prop.layout + prop.path}
-            render={(props) => <prop.component {...props} code={code} fe={fe} se={se} te={te} be={be} />}
+            render={(props) => <prop.component {...props} name={name} code={code} fe={fe} se={se} te={te} be={be} />}
             key={key}
             code={code}
           />
@@ -79,7 +79,7 @@ function Admin() {
         <div className="main-panel" ref={mainPanel}>
           <AdminNavbar />
           <div className="content">
-            <Switch>{getRoutes(routes, code, fe, se, te, be)}</Switch>
+            <Switch>{getRoutes(routes, name, code, fe, se, te, be)}</Switch>
           </div>
           <Footer />
         </div>

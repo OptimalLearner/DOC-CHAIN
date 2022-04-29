@@ -57,7 +57,7 @@ function TableList(props) {
           <Col md="12">
             <Card className="strpied-tabled-with-hover">
               <Card.Header>
-                <Card.Title as="h4"> TE COMPS </Card.Title>
+                <Card.Title as="h4"> All Students </Card.Title>
               </Card.Header>
               <Card.Body className="table-full-width table-responsive px-0">
                 <Table className="table-hover table-striped">

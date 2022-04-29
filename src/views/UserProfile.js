@@ -15,7 +15,6 @@ import {
 } from "react-bootstrap";
 
 function User(props) {
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     for(let i=0;i<e.target.length;i ++) {
@@ -68,7 +67,7 @@ function User(props) {
                       <Form.Group>
                         <label>College (disabled)</label>
                         <Form.Control
-                          defaultValue="Sardar Patel Institute of Technology"
+                          defaultValue={props.name}
                           disabled
                           placeholder="Company"
                           type="text"

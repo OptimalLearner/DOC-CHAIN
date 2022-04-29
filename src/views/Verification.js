@@ -45,9 +45,9 @@ function Verification(props) {
       .then(res => {
         console.log(res.data);
         if(res.data == 'Verified') {
-            setResult('The Document is Successfully Verified!');
+            setResult('This Document is Successfully Verified!');
         } else {
-            setResult('The Document is Unauthentic. Verification Failed!');
+            setResult('This Document is Illegitimate');
         }
       })
     setLoading(false)
@@ -77,7 +77,7 @@ function Verification(props) {
                         <Alert variant="secondary" style={{margin: '0 25px 10px', textAlign: 'center', color: '#000'}}>
                         {isLoading ? 
                             <h2 style={{fontSize: '20px', margin: '10px 0'}}> {loadingMessage} </h2> : 
-                            <h2 style={{fontSize: '20px', margin: '10px 0'}}> Result: {result} </h2>
+                            <h2 style={{fontSize: '20px', margin: '10px 0'}}> {result} </h2>
                         }
                         </Alert>
                     </Col>
