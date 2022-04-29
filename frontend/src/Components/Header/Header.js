@@ -23,15 +23,14 @@ const Header = () => {
                                 <ul>
                                     <li className="dropdown"><a href="/signin">Student Login</a></li>
                                     <li className="dropdown"><a href="/ASignIn">Institute Login</a></li>
-                                    
+                                    <li className="dropdown"><a href="/companySignIn">Company Login</a></li>
                                 </ul>
                 
                                 </li>
                                 <li className="dropdown"><a href="#">Sign Up</a>
                                 <ul>
-    
                                     <li className="dropdown"><a href="/Signup">Register your Institute</a></li>
-                                    
+                                    <li className="dropdown"><a href="/companySignup">Register your Company</a></li>
                                 </ul>
                                 
                                 </li>

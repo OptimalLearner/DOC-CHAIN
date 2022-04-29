@@ -3,7 +3,7 @@ import { useState } from "react";
 import Header from "../Header/Header";
 import "./asignin.css";
 import axios from 'axios'
-  const ASignIn = () => {
+  const CompanySignIn = () => {
     const initialState = {
       code: "",
       password: ""
@@ -14,14 +14,14 @@ import axios from 'axios'
     const login = async (formData) => {
       console.log(formData)
       await axios
-        .post(`${process.env.REACT_APP_BACKEND_DOMAIN}loginInstitute`, formData)
+        .post(`${process.env.REACT_APP_BACKEND_DOMAIN}loginCompany`, formData)
         .then(function (response) {
           var d = response.data;
           setCode(d.code);
           setPass(d.password) 
           console.log(d);
           if(d == 'Login Success') {
-            window.location.href = "http://localhost:3001/institute/dashboard"
+            window.location.href = "http://localhost:3001/company/dashboard"
           } else {
             alert('Login Failed!')
           }
@@ -62,7 +62,7 @@ import axios from 'axios'
     
     <div className="login">
       <div className="container">
-        <h1>   Institute Login </h1>
+        <h1>   Company Login </h1>
     
         <div className="login-form">
           <form action="" onSubmit={handleSubmit}>
@@ -87,4 +87,4 @@ import axios from 'axios'
   );
 };
 
-export default ASignIn;
+export default CompanySignIn;
