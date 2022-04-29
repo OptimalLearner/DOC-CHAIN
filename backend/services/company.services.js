@@ -1,4 +1,5 @@
 let Company = require('../models/company.model');
+let Candidate = require('../models/candidates.model');
 
 const loginCompany = async (code, password) => {
     const data = await Company.findOne({ code: code });
@@ -44,4 +45,15 @@ const getCompany = async (code) => {
     }
 }
 
-module.exports = { loginCompany, registerCompany, getCompany }
+const getAllApplications = async () => {
+    try {
+        const data = await Candidate.find({ });
+        if(data) {
+            return data;       
+        }
+    } catch(e) {
+        return 'Error';
+    }
+}
+
+module.exports = { loginCompany, registerCompany, getCompany, getAllApplications }

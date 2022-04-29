@@ -42,7 +42,7 @@ const registerCompany = async (req, res) => {
     }
 }
 
-const verifyCandidate = async (req, res) => {
+const verifyDocument = async (req, res) => {
     try {
         if (!req.files && !req.files.document) {
             res.status(400);
@@ -89,4 +89,30 @@ const verifyCandidate = async (req, res) => {
     }
 }
 
-module.exports = { loginCompany, registerCompany, verifyCandidate }
+const getAllApplications = async (req, res) => {
+    try {
+        let result = await CompanyService.getAllApplications();
+        if(result != 'Error') {
+            return res.json(result);
+        } else {
+            return res.end('Error');
+        }
+    } catch(e) {
+        console.log(e);
+        return res.end('Error');
+    }
+}
+
+const initialCompanyDashboard = async (req, res) => {
+    console.log('hehehehe');
+    console.log(s)
+    const data = {
+        name: s.institute,
+        code: s.code
+    }
+
+    console.log(data)
+    return res.json({data: data});
+}
+
+module.exports = { loginCompany, registerCompany, verifyDocument, getAllApplications, initialCompanyDashboard }

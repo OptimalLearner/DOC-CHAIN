@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-let InstituteController = require('../controllers/company.controller');
+let CompanyController = require('../controllers/company.controller');
 
-router.post('/loginCompany', InstituteController.loginCompany);
-router.post('/registerCompany', InstituteController.registerCompany);
-router.post('/verifyCandidate', InstituteController.verifyCandidate);
+router.post('/loginCompany', CompanyController.loginCompany);
+router.post('/registerCompany', CompanyController.registerCompany);
+router.get('/getAllApplications', CompanyController.getAllApplications);
+router.post('/initialCompanyDashboard', CompanyController.initialCompanyDashboard);
+router.post('/verifyDocument', CompanyController.verifyDocument);
 
 module.exports = router;
