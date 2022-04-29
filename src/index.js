@@ -10,11 +10,13 @@ import "./assets/css/demo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import AdminLayout from "layouts/Admin.js";
+import CompanyLayout from "layouts/Company.js";
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/institute" render={(props) => <AdminLayout {...props} />} />
+      <Route path="/company/" render={(props) => <CompanyLayout {...props} />} />
       <Redirect from="/" to="/institute/dashboard" />
     </Switch>
   </BrowserRouter>,
