@@ -51,4 +51,10 @@ const initialDashboard = async (req, res) => {
     return res.json({data: data, fe: fe.length, se: se.length, te: te.length, be: be.length});
 }
 
-module.exports = { loginInstitute, registerInstitute, initialDashboard }
+const logout = (req, res) => {
+    s = '';
+    console.log('Logout')
+    return res.end('Logout')
+}
+
+module.exports = { loginInstitute, registerInstitute, initialDashboard, logout }
