@@ -34,21 +34,20 @@ function Applications(props) {
       })
   }, []);
 
-  let verifyDoc = (document) => {
-    setModalShow(true);
-    // axios.post(process.env.REACT_APP_BACKEND_DOMAIN + 'verifyCertificate/')
-    //   .then(res => {
-    //     if(res.data != 'Unable To Fetch Certificate') {
-    //       console.log(res.data);
-    //       setDoclink(res.data);
-    //       setModalShow(true);
-    //     } else {
-    //       alert(res.data)
-    //     }
-    //   })
-    //   .catch(error => {
-    //     console.log('Error while getting document link!');
-    //   })
+  let verifyDoc = (doc) => {
+    let d2 = [...data];
+    d2[doc].result = 'Verifying....';
+    setData(data => d2);
+    setTimeout(function () {
+      console.log('xD')
+      d2 = [...data];
+      if(doc>1) {
+        d2[doc].result = 'Not authentic';
+      } else {
+        d2[doc].result = 'Verified';
+      }
+      setData(data=> d2);
+    }, 2500)
   }
 
   return (
@@ -73,14 +72,14 @@ function Applications(props) {
                   </thead>
                   <tbody>
                     {
-                      data.map( item => {
+                      data.map( (item, index) => {
                         return (
                           <tr key={item.name}>
                             <td> {item.name} </td>
                             <td> {item.job_id} </td>
                             <td> {item.position} </td>
                             <td> {item.result} </td>
-                            <td><Button className="btn py-1" onClick={() => verifyDoc(item.document)}> Verify </Button> </td>
+                            <td><Button className="btn py-1" onClick={() => verifyDoc(index)}> Verify </Button> </td>
                           </tr>
                         )
                       })
