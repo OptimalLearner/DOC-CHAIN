@@ -8,5 +8,7 @@ router.post('/uploadCertificate/:slug', StudentController.uploadCertificate);
 router.post('/viewCertificate/:slug', StudentController.viewCertificate);
 router.post('/loginStudent', StudentController.loginStud);
 router.post('/addStudent', StudentController.addStudent);
+router.post('/getStudentInfo/:uid', StudentController.getStudentInfo);
+router.post('/initialStudentDashboard', StudentController.initialStudentDashboard);
 
 module.exports = router;

@@ -36,4 +36,14 @@ const addStudent = async (record) => {
         return 'Success';
 }
 
-module.exports = { getStudent, loginStud, addStudent }
+const getStudentInfo = async (query) => {
+    try {
+        console.log(query)
+        let students = await Student.findOne({uid: query});
+        return students;
+    } catch(e) {
+        throw Error('Error While Fetching Student\'s Data');
+    }
+}
+
+module.exports = { getStudent, loginStud, addStudent, getStudentInfo }

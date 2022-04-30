@@ -2,11 +2,17 @@ const StudentService = require('../services/students.services');
 const { updateAsset, getTransactionData, submitTransaction } = require('../src/create');
 const functions  = require('../utils');
 const formidable = require("formidable");
+let s;
 
 const loginStud = async (req, res) => {
     try {
         let result = await StudentService.loginStud(req.body.uid, req.body.password)
         if(result == 'Success') {
+            let ins = await StudentService.getStudentInfo(req.body.uid);
+            req.session.uid = ins.uid;
+            req.session.name = ins.name;
+            console.log(req.session)
+            s = req.session;
             return res.end('Login Success');
         } else {
             return res.end('Login Failed');
@@ -88,4 +94,22 @@ const addStudent = async (req, res) => {
     }
 }
 
-module.exports = { loginStud, getStudent, uploadCertificate, viewCertificate, addStudent }
+const initialStudentDashboard = async (req, res) => {
+    const data = {
+        uid: s.uid,
+        name: s.name
+    }
+    return res.json({data: data});
+}
+
+const getStudentInfo = async (req, res) => {
+    try {
+        let students = await StudentService.getStudentInfo(req.params.uid)
+        console.log(students);
+        return res.status(200).json(students);
+    } catch(e) {
+        throw Error('Error While Fetching Student\'s Data');
+    }
+}
+
+module.exports = { loginStud, getStudent, uploadCertificate, viewCertificate, addStudent, getStudentInfo, initialStudentDashboard }
