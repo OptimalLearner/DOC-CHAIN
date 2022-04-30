@@ -16,9 +16,14 @@ const SignIn = () => {
       .post(`${process.env.REACT_APP_BACKEND_DOMAIN}/loginStudent`, formData)
       .then(function (response) {
         var d = response.data;
-        setUid(d.uid);
-        setPass(d.password) //user logged in and user's email saved in email
-        console.log(d);
+        if(d == 'Login Success') {
+          setUid(d.uid);
+          setPass(d.password) //user logged in and user's email saved in email
+          
+          window.location.href = "http://localhost:3001/student/dashboard";
+        } else {
+          alert('Login Failed');
+        }
       })
       .catch(function (error) {
         console.log(error);
